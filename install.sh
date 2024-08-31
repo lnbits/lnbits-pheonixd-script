@@ -26,7 +26,7 @@ After=network.target
 [Service]
 ExecStart=/home/ubuntu/phoenix-0.3.4-linux-x64/phoenixd
 Restart=always
-User=root
+User=ubuntu
 
 [Install]
 WantedBy=multi-user.target
