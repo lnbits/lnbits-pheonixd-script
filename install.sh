@@ -75,6 +75,9 @@ echo "Enabling and starting lnbits service..."
 sudo systemctl enable lnbits.service
 sudo systemctl start lnbits.service
 
+cd
+sleep 10
+
 # Install caddy
 echo "Installing caddy..."
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
