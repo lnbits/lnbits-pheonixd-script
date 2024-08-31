@@ -8,7 +8,7 @@ Set up your domains DNS records to your lunanode instance, by adding an "A" reco
 
 SSH into your lunanode instance `ssh ubuntu@<instance-ip>` and run:
 ```sh
-wget https://raw.githubusercontent.com/lnbits/lnbits-pheonixd-script/install.sh &&
+wget https://raw.githubusercontent.com/lnbits/lnbits-pheonixd-script/main/install.sh &&
 chmod +x install.sh &&
 ./install.sh
 ```
