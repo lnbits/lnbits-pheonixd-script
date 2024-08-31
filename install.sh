@@ -38,7 +38,7 @@ After=phoenixd.service
 
 [Service]
 WorkingDirectory=/home/ubuntu/lnbits
-ExecStart=/home/ubuntu/lnbits.sh
+ExecStart=lnbits.sh
 User=ubuntu
 Restart=always
 TimeoutSec=120
