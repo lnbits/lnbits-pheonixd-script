@@ -61,7 +61,7 @@ sudo systemctl status phoenixd.service
 cd 
 
 # Wait for seed.dat to be created
-echo "Waiting for .pheonix to be created..."
+timeout 10s echo "Waiting for .pheonix to be created..."
 while [ ! -f .pheonix ]; do
     sleep 1  # Wait for 1 second before checking again
 done
