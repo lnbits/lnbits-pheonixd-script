@@ -53,6 +53,13 @@ EOF
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
 
+while [ ! -f .pheonix/seed.dat ]; do
+    sleep 1  # Wait for 1 second before checking again
+done
+
+cat .pheonix/seed.dat
+read -p "Copy the pheonixd nodes seed and put somewhere safe then press enter"
+
 while [ ! -f .pheonix/phoenix.conf ]; do
     sleep 1  # Wait for 1 second before checking again
 done
