@@ -94,24 +94,11 @@ export MY_CADDY_URL="$USER_INPUT"
 
 echo "Creating Caddyfile..."
 sudo bash -c "cat <<EOF > /home/ubuntu/Caddyfile
-$MY_CADDY_URL {
-  handle /api/v1/payments/sse* {
-    reverse_proxy 0.0.0.0:5000 {
-      header_up X-Forwarded-Host $MY_CADDY_URL
-      transport http {
-         keepalive off
-         compression off
-      }
-    }
-  }
-  reverse_proxy 0.0.0.0:5000 {
-    header_up X-Forwarded-Host $MY_CADDY_URL
-  }
-}
+$MY_CADDY_URL
+reverse_proxy 0.0.0.0:5000
 EOF"
 
 echo "Restarting caddy..."
-sudo caddy stop
-sudo caddy start
+sudo caddy restart
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
