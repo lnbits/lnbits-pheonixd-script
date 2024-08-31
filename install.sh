@@ -53,11 +53,25 @@ EOF
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
 
+while ! sudo systemctl is-active --quiet phoenixd.service; do
+    echo "Waiting for phoenixd service to start..."
+    sleep 2
+done
+
+echo "Phoenixd service is now active."
+
 cat .pheonix/phoenix.conf
 read -p "Copy the http-password and put somewhere safe then press enter"
 
 sudo systemctl enable lnbits.service
 sudo systemctl start lnbits.service
+
+while ! sudo systemctl is-active --quiet lnbits.service; do
+    echo "Waiting for lnbits service to start..."
+    sleep 2
+done
+
+echo "lnbits service is now active."
 
 # Install caddy
 
