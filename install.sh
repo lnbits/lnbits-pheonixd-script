@@ -4,6 +4,7 @@
 
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh
 chmod +x lnbits.sh
+timeout 10s ./lnbits.sh
 
 # Install phoenix
 # Change here to latest from https://github.com/ACINQ/phoenixd/releases
@@ -12,6 +13,7 @@ wget https://github.com/ACINQ/phoenixd/releases/download/v0.3.4/phoenix-0.3.4-li
 sudo apt install -y unzip
 unzip phoenix-0.3.4-linux-x64.zip
 chmod +x phoenix-0.3.4-linux-x64/phoenixd
+timeout 10s ./phoenix-0.3.4-linux-x64/phoenixd
 
 # Make phoenixd service file
 sudo bash -c 'cat <<EOF > /etc/systemd/system/phoenixd.service
