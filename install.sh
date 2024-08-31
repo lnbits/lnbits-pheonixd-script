@@ -54,13 +54,9 @@ echo "Enabling and starting phoenixd service..."
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
 
-cd 
-
-# Wait for seed.dat to be created
-timeout 10s echo "Waiting for .pheonix to be created..."
-while [ ! -f .pheonix ]; do
-    sleep 1  # Wait for 1 second before checking again
-done
+cd
+sleep 10
+cd .pheonix
 
 # Display seed.dat contents
 cat seed.dat
