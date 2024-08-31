@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install LNbits
+
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh && 
 chmod +x lnbits.sh && 
 ./lnbits.sh
@@ -8,6 +10,8 @@ chmod +x lnbits.sh &&
 # Change here to latest from https://github.com/ACINQ/phoenixd/releases
 
 wget https://github.com/ACINQ/phoenixd/releases/download/v0.3.4/phoenix-0.3.4-linux-x64.zip &&
+sudo apt install unzip &&
+unzip phoenix-0.3.4-linux-x64.zip &&
 chmod +x phoenix-0.3.4-linux-x64/phoenixd &&
 cat .pheonix/phoenix.conf
 read -p "Copy the http-password and put somewhere safe then press enter"
