@@ -86,6 +86,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --d
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 sudo apt update
 sudo apt install caddy
+sudo caddy stop
 
 # Make Caddyfile
 read -p "Enter yoururl.com you will be using and press enter: " USER_INPUT
@@ -94,13 +95,14 @@ read -p "Enter yoururl.com you will be using and press enter: " USER_INPUT
 export MY_CADDY_URL="$USER_INPUT"
 
 echo "Creating Caddyfile..."
-sudo bash -c "cat <<EOF > /home/ubuntu/Caddyfile
-$MY_CADDY_URL
-reverse_proxy 0.0.0.0:5000
-EOF"
+sudo bash -c 'cat <<EOF > /home/ubuntu/Caddyfile
+$MY_CADDY_URL {
+  reverse_proxy 0.0.0.0:5000
+}
+EOF'
 echo "Restarting caddy..."
+sudo caddy stop
 sleep 5
-cd
-sudo caddy start
+sudo caddy start --config /home/ubuntu/Caddyfile
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
