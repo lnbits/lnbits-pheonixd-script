@@ -60,6 +60,11 @@ done
 
 echo "Phoenixd service is now active."
 
+while [ ! -f .phoenix/phoenix.conf ]; do
+    echo "Waiting for phoenix.conf to be created..."
+    sleep 2
+done
+
 cat .pheonix/phoenix.conf
 read -p "Copy the http-password and put somewhere safe then press enter"
 
