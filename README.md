@@ -10,7 +10,7 @@ SSH into your lunanode instance `ssh ubuntu@<instance-ip>` and run:
 ```sh
 wget https://raw.githubusercontent.com/lnbits/lnbits-pheonixd-script/main/install.sh &&
 chmod +x install.sh &&
-./install.sh
+sudo ./install.sh
 ```
 Useful commands:
 ```sh
