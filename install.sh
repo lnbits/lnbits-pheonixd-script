@@ -5,17 +5,16 @@
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh
 chmod +x lnbits.sh
 
-# Install pheonix 
+# Install phoenix
 # Change here to latest from https://github.com/ACINQ/phoenixd/releases
 
 wget https://github.com/ACINQ/phoenixd/releases/download/v0.3.4/phoenix-0.3.4-linux-x64.zip
-sudo apt install unzip
+sudo apt install -y unzip
 unzip phoenix-0.3.4-linux-x64.zip
 chmod +x phoenix-0.3.4-linux-x64/phoenixd
 
-# Make pheonixd service file
-
-cat <<EOF > /etc/systemd/system/phoenixd.service
+# Make phoenixd service file
+sudo bash -c 'cat <<EOF > /etc/systemd/system/phoenixd.service
 [Unit]
 Description=phoenixd
 After=network.target
@@ -27,16 +26,14 @@ User=ubuntu
 
 [Install]
 WantedBy=multi-user.target
-EOF
-
+EOF'
 
 # Make lnbits service file
-
-cat <<EOF > /etc/systemd/system/lnbits.service
+sudo bash -c 'cat <<EOF > /etc/systemd/system/lnbits.service
 [Unit]
 Description=LNbits
-Wants=pheonix.service
-After=pheonix.service
+Wants=phoenixd.service
+After=phoenixd.service
 
 [Service]
 WorkingDirectory=/home/ubuntu/lnbits
