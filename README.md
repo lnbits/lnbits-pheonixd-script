@@ -1,4 +1,4 @@
-# Easy peasy LNbits, Pheonisd, Caddy script
+# Easy peasy LNbits, Pheonixd, Caddy script
 
 Tested on an Ubuntu 22.04 server on https://www.lunanode.com/. Before running you can edit the install.sh file to latest release of pheonixd, thsi script uses v0.3.4.
 
