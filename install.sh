@@ -4,6 +4,7 @@
 echo "Downloading LNbits script..."
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh
 chmod +x lnbits.sh
+timeout 60 ./lnbits.sh
 
 # Install phoenix
 echo "Downloading Phoenix..."
@@ -33,7 +34,8 @@ echo "Creating lnbits service file..."
 sudo bash -c 'cat <<EOF > /etc/systemd/system/lnbits.service
 [Unit]
 Description=LNbits
-After=phoenixd.service
+Wants=phoenixd.service
+After=phoenixd.service network.target
 
 [Service]
 ExecStart=/home/ubuntu/lnbits.sh
@@ -96,16 +98,9 @@ sudo bash -c "cat <<EOF > /home/ubuntu/Caddyfile
 $MY_CADDY_URL
 reverse_proxy 0.0.0.0:5000
 EOF"
-
 echo "Restarting caddy..."
+sleep 5
 cd
-sleep 5
-sudo caddy stop
-echo "Waiting for Caddy to fully stop..."
-while pgrep -x "caddy" > /dev/null; do
-    sleep 1
-done
-sleep 5
 sudo caddy start
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
