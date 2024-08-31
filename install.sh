@@ -12,9 +12,6 @@ wget https://github.com/ACINQ/phoenixd/releases/download/v0.3.4/phoenix-0.3.4-li
 sudo apt install unzip &&
 unzip phoenix-0.3.4-linux-x64.zip &&
 chmod +x phoenix-0.3.4-linux-x64/phoenixd &&
-cat .pheonix/phoenix.conf
-read -p "Copy the http-password and put somewhere safe then press enter"
-
 
 # Make pheonixd service file
 
@@ -58,6 +55,9 @@ EOF
 
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
+
+cat .pheonix/phoenix.conf
+read -p "Copy the http-password and put somewhere safe then press enter"
 
 sudo systemctl enable lnbits.service
 sudo systemctl start lnbits.service
