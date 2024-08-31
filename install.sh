@@ -1,10 +1,13 @@
 #!/bin/bash
 
+mkdir lnbitsserver
+cd lnbitsserver
+
 # Install LNbits
 echo "Downloading LNbits script..."
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh
 chmod +x lnbits.sh
-timeout 60 ./lnbits.sh
+timeout 90 ./lnbits.sh
 
 # Install phoenix
 echo "Downloading Phoenix..."
@@ -21,7 +24,7 @@ Description=phoenixd
 After=network.target
 
 [Service]
-ExecStart=/home/ubuntu/phoenix-0.3.4-linux-x64/phoenixd
+ExecStart=/home/ubuntu/lnbitsserver/phoenix-0.3.4-linux-x64/phoenixd
 Restart=always
 User=ubuntu
 
@@ -38,7 +41,7 @@ Wants=phoenixd.service
 After=phoenixd.service network.target
 
 [Service]
-ExecStart=/home/ubuntu/lnbits.sh
+ExecStart=/home/ubuntu/lnbitsserver/lnbits.sh
 User=ubuntu
 Restart=always
 
@@ -51,8 +54,6 @@ echo "Enabling and starting phoenixd service..."
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
 
-cd
-sleep 10
 cd .phoenix
 
 # Display seed.dat contents
@@ -69,14 +70,13 @@ cat phoenix.conf
 echo
 read -p "IMPORTANT: Copy the http-password and put it somewhere safe then press enter"
 
-cd
+cd ..
 
 # Start lnbits service
 echo "Enabling and starting lnbits service..."
 sudo systemctl enable lnbits.service
 sudo systemctl start lnbits.service
 
-cd
 sleep 10
 
 # Install caddy
@@ -95,7 +95,7 @@ read -p "Enter yoururl.com you will be using and press enter: " USER_INPUT
 export MY_CADDY_URL="$USER_INPUT"
 
 echo "Creating Caddyfile..."
-sudo bash -c 'cat <<EOF > /home/ubuntu/Caddyfile
+sudo bash -c 'cat <<EOF > /home/ubuntu/lnbitsserver/Caddyfile
 $MY_CADDY_URL {
   reverse_proxy 0.0.0.0:5000
 }
@@ -103,6 +103,6 @@ EOF'
 echo "Restarting caddy..."
 sudo caddy stop
 sleep 5
-sudo caddy start --config /home/ubuntu/Caddyfile
+sudo caddy start --config /home/ubuntu/lnbitsserver/Caddyfile
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
