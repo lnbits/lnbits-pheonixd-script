@@ -36,7 +36,6 @@ Description=LNbits
 After=phoenixd.service
 
 [Service]
-WorkingDirectory=/home/ubuntu/lnbits
 ExecStart=/home/ubuntu/lnbits.sh
 User=ubuntu
 Restart=always
