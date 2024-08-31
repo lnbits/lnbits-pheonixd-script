@@ -54,10 +54,6 @@ echo "Enabling and starting phoenixd service..."
 sudo systemctl enable phoenixd.service
 sudo systemctl start phoenixd.service
 
-# Debugging: Check service status
-echo "Checking phoenixd service status..."
-sudo systemctl status phoenixd.service
-
 cd 
 
 # Wait for seed.dat to be created
