@@ -58,25 +58,29 @@ sudo systemctl start phoenixd.service
 echo "Checking phoenixd service status..."
 sudo systemctl status phoenixd.service
 
+cd 
+cd .pheonix
 # Wait for seed.dat to be created
 echo "Waiting for .pheonix/seed.dat to be created..."
-while [ ! -f /home/ubuntu/.pheonix/seed.dat ]; do
+while [ ! -f seed.dat ]; do
     sleep 1  # Wait for 1 second before checking again
 done
 
 # Display seed.dat contents
-cat /home/ubuntu/.pheonix/seed.dat
+cat seed.dat
 read -p "Copy the phoenixd nodes seed and put somewhere safe then press enter"
 
 # Wait for phoenix.conf to be created
 echo "Waiting for .pheonix/phoenix.conf to be created..."
-while [ ! -f /home/ubuntu/.pheonix/phoenix.conf ]; do
+while [ ! -f phoenix.conf ]; do
     sleep 1  # Wait for 1 second before checking again
 done
 
 # Display phoenix.conf contents
-cat /home/ubuntu/.pheonix/phoenix.conf
+cat phoenix.conf
 read -p "Copy the http-password and put it somewhere safe then press enter"
+
+cd
 
 # Start lnbits service
 echo "Enabling and starting lnbits service..."
