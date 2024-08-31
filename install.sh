@@ -3,8 +3,7 @@
 # Install LNbits
 
 wget https://raw.githubusercontent.com/lnbits/lnbits/snapcraft/lnbits.sh && 
-chmod +x lnbits.sh && 
-./lnbits.sh
+chmod +x lnbits.sh
 
 # Install pheonix 
 # Change here to latest from https://github.com/ACINQ/phoenixd/releases
