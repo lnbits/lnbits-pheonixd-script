@@ -30,3 +30,11 @@ journalctl -u phoenixd.service --output cat -f
 sudo stop caddy
 sudo start caddy
 ```
+For updating LNbits:
+```sh
+cd lnbits
+git pull
+poetry install
+sudo systemctl stop lnbits.service
+sudo systemctl start lnbits.service
+```
