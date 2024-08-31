@@ -59,12 +59,18 @@ sleep 10
 cd .phoenix
 
 # Display seed.dat contents
+echo
+echo
 cat seed.dat
-read -p "Copy the phoenixd nodes seed and put somewhere safe then press enter"
+echo
+read -p "IMPORTANT: Copy the phoenixd nodes seed and put somewhere safe then press enter"
 
 # Display phoenix.conf contents
+echo
+echo
 cat phoenix.conf
-read -p "Copy the http-password and put it somewhere safe then press enter"
+echo
+read -p "IMPORTANT: Copy the http-password and put it somewhere safe then press enter"
 
 cd
 
@@ -88,11 +94,11 @@ read -p "Enter the URL you will be using and press enter: " USER_INPUT
 export MY_CADDY_URL="$USER_INPUT"
 
 echo "Creating Caddyfile..."
-cat <<EOF > /home/ubuntu/Caddyfile
-{env.MY_CADDY_URL} {
+sudo bash -c "cat <<EOF > /home/ubuntu/Caddyfile
+$MY_CADDY_URL {
   handle /api/v1/payments/sse* {
     reverse_proxy 0.0.0.0:5000 {
-      header_up X-Forwarded-Host {env.MY_CADDY_URL}
+      header_up X-Forwarded-Host $MY_CADDY_URL
       transport http {
          keepalive off
          compression off
@@ -100,10 +106,10 @@ cat <<EOF > /home/ubuntu/Caddyfile
     }
   }
   reverse_proxy 0.0.0.0:5000 {
-    header_up X-Forwarded-Host {env.MY_CADDY_URL}
+    header_up X-Forwarded-Host $MY_CADDY_URL
   }
 }
-EOF
+EOF"
 
 echo "Restarting caddy..."
 sudo caddy stop
