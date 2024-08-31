@@ -1,6 +1,6 @@
 # Easy peasy LNbits, Pheonixd, Caddy script
 
-Tested on an Ubuntu 22.04 server on https://www.lunanode.com/. Before running you can edit the install.sh file to latest release of pheonixd, thsi script uses v0.3.4.
+Tested on an Ubuntu 22.04 server on https://www.lunanode.com/ with their default user named `ubuntu`, but you could adapt the install.sh script for other enviroments. Before running you can edit the install.sh file to latest release of pheonixd, thsi script uses v0.3.4.
 
 Set up your domains DNS records to your lunanode instance, by adding an "A" record to your lunanodes ip address.
 
