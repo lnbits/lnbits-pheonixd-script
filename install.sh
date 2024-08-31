@@ -33,17 +33,13 @@ echo "Creating lnbits service file..."
 sudo bash -c 'cat <<EOF > /etc/systemd/system/lnbits.service
 [Unit]
 Description=LNbits
-Wants=phoenixd.service
 After=phoenixd.service
 
 [Service]
 WorkingDirectory=/home/ubuntu/lnbits
-ExecStart=lnbits.sh
+ExecStart=/home/ubuntu/lnbits.sh
 User=ubuntu
 Restart=always
-TimeoutSec=120
-RestartSec=30
-Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
