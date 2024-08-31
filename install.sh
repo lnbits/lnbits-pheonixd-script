@@ -56,7 +56,7 @@ sudo systemctl start phoenixd.service
 
 cd
 sleep 10
-cd .pheonix
+cd .phoenix
 
 # Display seed.dat contents
 cat seed.dat
