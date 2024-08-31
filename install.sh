@@ -87,7 +87,7 @@ sudo apt update
 sudo apt install caddy
 
 # Make Caddyfile
-read -p "Enter the URL you will be using and press enter: " USER_INPUT
+read -p "Enter yoururl.com you will be using and press enter: " USER_INPUT
 
 # Export the input as a global environment variable
 export MY_CADDY_URL="$USER_INPUT"
@@ -98,7 +98,10 @@ $MY_CADDY_URL
 reverse_proxy 0.0.0.0:5000
 EOF"
 
+cd
 echo "Restarting caddy..."
-sudo caddy restart
+sudo caddy stop
+sleep 10
+sudo caddy start
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
