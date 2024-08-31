@@ -97,10 +97,15 @@ $MY_CADDY_URL
 reverse_proxy 0.0.0.0:5000
 EOF"
 
-cd
 echo "Restarting caddy..."
+cd
+sleep 5
 sudo caddy stop
-sleep 10
+echo "Waiting for Caddy to fully stop..."
+while pgrep -x "caddy" > /dev/null; do
+    sleep 1
+done
+sleep 5
 sudo caddy start
 
 read -p "Congrats, navigate to your URL and as long as your DNS is set up and propagated, it will work."
